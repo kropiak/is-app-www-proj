@@ -3,7 +3,8 @@ from django.db import models
 
 class Category(models.Model):
     name = models.CharField(max_length=60)
-
+    description = models.TextField(null=True, blank=True)
+    # Ctrl + / - dodanie/usunięcie komentarza
 
 class Topic(models.Model):
     name = models.CharField(max_length=60)
