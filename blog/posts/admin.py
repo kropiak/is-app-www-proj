@@ -11,3 +11,7 @@ admin.site.register(Topic)
 # R - RETRIEVE
 # U - UPDATE
 # D - DELETE
+
+
+# SOLID - akronim używany w programowaniu obiektowym
+# O - OPEN/CLOSED - otwarte na rozszerzanie, ale zamknięty na modyfikację
