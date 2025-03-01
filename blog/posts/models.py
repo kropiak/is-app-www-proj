@@ -12,11 +12,17 @@ class Topic(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.name
+
 class Post(models.Model):
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     modified_at = models.DateTimeField(auto_now=True, editable=False)
     created_by = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+
+    def __str__(self):
+        return self.content[:20] + "..."
 
     # Shift + Alt + strzałki góra/dół - powielanie linii, w której znajduje się karetka
