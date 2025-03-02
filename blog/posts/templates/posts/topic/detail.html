@@ -1,0 +1,9 @@
+{% extends "posts/base.html" %}
+
+{% block title %}{{ topic.name }}{% endblock %}
+
+{% block content %}
+<p>Topic: {{ topic.name }}</p>
+<p>Kategoria: {{ topic.category.name }}</p>
+<p>Dodano: {{ topic.created }}</p>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "posts/base.html" %}
+
+{% block title %}Lista obiektów Topic{% endblock %}
+
+{% block content %}
+Aktualnie w mojej bazie dodane są poniższe obiekty Topic.
+{% for topic in topics %}
+<p>Topic: {{ topic.name }}</p>
+<p>Kategoria: {{ topic.category.name }}</p>
+<p>Dodano: {{ topic.created }}</p>
+<hr>
+{% endfor %}
+{% endblock %}
