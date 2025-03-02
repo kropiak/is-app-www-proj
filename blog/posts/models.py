@@ -13,7 +13,7 @@ class Topic(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.name
+        return f"Topic : {self.name}, dodany {self.created}, w kategorii {self.category.name}." 
 
 class Post(models.Model):
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)

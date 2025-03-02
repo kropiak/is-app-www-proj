@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import Http404, HttpResponse
 import datetime
+from .models import Topic
 
 
 def welcome_view(request):
