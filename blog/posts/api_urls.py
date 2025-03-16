@@ -6,4 +6,6 @@ from . import api_views
 urlpatterns = [
     path('topics/', api_views.topic_list),
     path('topics/<int:pk>/', api_views.topic_detail),
+    path('categories/', api_views.category_list),
+    path('categories/<int:pk>/', api_views.category_detail),
 ]
