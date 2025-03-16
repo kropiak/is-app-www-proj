@@ -8,4 +8,6 @@ urlpatterns = [
     path('topics/<int:pk>/', api_views.topic_detail),
     path('categories/', api_views.category_list),
     path('categories/<int:pk>/', api_views.category_detail),
+    path('posts/', api_views.PostList.as_view()),
+    path('topics/search/<str:keyword>/', api_views.find_topic_by_keyword),
 ]
