@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # modele musimy zaimportować
-from .models import Category, Topic, Post
+from .models import Category, Kategoria, Produkt, Topic, Post
 
 
 class PostAdmin(admin.ModelAdmin):
@@ -10,6 +10,8 @@ class PostAdmin(admin.ModelAdmin):
 # a następnie zarejestrować (pokazano najprostszy przypadek)
 admin.site.register(Category)
 admin.site.register(Topic)
+admin.site.register(Produkt)
+admin.site.register(Kategoria)
 admin.site.register(Post, PostAdmin)
 
 # C - CREATE

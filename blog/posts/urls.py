@@ -8,4 +8,6 @@ urlpatterns = [
     path("topic/<int:id>", views.topic_detail),
     path("categories", views.category_list),
     path("category/<int:id>", views.category_detail),
+    path("produkts", views.produkt_list),
+    path("kategoria/<int:id>", views.kategoria_detail),
 ]

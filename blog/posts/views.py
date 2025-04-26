@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import Http404, HttpResponse
 import datetime
-from .models import Topic, Category, Post
+from .models import Kategoria, Produkt, Topic, Category, Post
 
 
 def welcome_view(request):
@@ -53,3 +53,19 @@ def category_detail(request, id):
     return render(request,
                   "posts/category/detail.html",
                   {'category': category})
+
+
+def produkt_list(request):
+    produkty = Produkt.objects.all()
+
+    return HttpResponse(produkty)
+
+
+def kategoria_detail(request, id):
+
+    try:
+        kategoria = Kategoria.objects.get(id=id)
+    except Kategoria.DoesNotExist:
+        raise Http404("Obiekt Kategoria o podanym id nie istnieje")
+    
+    return HttpResponse(kategoria)
