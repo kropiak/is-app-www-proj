@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from rest_framework import status, generics
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from .models import Topic, Category, Post
 from .serializers import TopicSerializer, CategoryModelSerializer, PostModelSerializer
@@ -19,7 +21,9 @@ def topic_list(request):
         return Response(serializer.data)
 
 
-@api_view(['GET', 'PUT', 'DELETE'])
+@api_view(['GET'])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def topic_detail(request, pk):
 
     """
@@ -40,8 +44,25 @@ def topic_detail(request, pk):
         serializer = TopicSerializer(topic)
         return Response(serializer.data)
 
+
+@api_view(['PUT', 'DELETE'])
+@authentication_classes([SessionAuthentication, BasicAuthentication])
+# @authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
+def topic_update_delete(request, pk):
+
+    """
+    :param request: obiekt DRF Request
+    :param pk: id obiektu Topic
+    :return: Response (with status and/or object/s data)
+    """
+    try:
+        topic = Topic.objects.get(pk=pk)
+    except Topic.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
     # dodajemy nowy obiekt Topic
-    elif request.method == 'PUT':
+    if request.method == 'PUT':
         serializer = TopicSerializer(topic, data=request.data)
         if serializer.is_valid():
             serializer.save()
